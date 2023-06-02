@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,13 +32,14 @@ public class Doacao {
     @NotEmpty(message = "O campo nome não pode ser vazio")
     private String nome;
 
-    @NotBlank @Size( max= 100, message = "o campo precisa estar com a descrição da doação e não pode estar vazio, e com no maximo 100 letras")
-    private String descricaoDoacao;
+    // @NotBlank @Size( max= 100, message = "o campo precisa estar com a descrição da doação e não pode estar vazio, e com no maximo 100 letras")
+    // private String descricaoDoacao;
     
     @NotBlank (message = "Descrever o tipo de alimento doado")
     private String tipoAlimento;
 
     private String qtdAlimento;
+
 
     @ManyToOne
     private ReceberDoacao receberDoacao;
