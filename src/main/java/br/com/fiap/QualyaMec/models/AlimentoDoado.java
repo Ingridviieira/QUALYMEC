@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,11 +27,7 @@ public class AlimentoDoado {
     @NotBlank (message = "Descrever a quantidade de alimento doado")
     private String qtdAlimento;
 
-    @ManyToOne
-    @JoinColumn(name = "doador_id")
-    private Doador doador;
-
-    public AlimentoDoado(Long id, String string, String string2, long l){
+    public AlimentoDoado(Long id){
         this.id = id;
     }
 

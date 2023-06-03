@@ -1,32 +1,51 @@
 # QUALYMEC  <!-- Listagem dos endpoints -->
 
 ## Objetivo do projeto:
-diminuir a falta de alimento
+Diminuir a falta de alimento
 
 ## Endpoints 
-# Doacao- api/v1/Doacao
+# Doador- api/v1/Doador
  
-- [Cadastrar Doacao](#cadastrar-doacao)
-- [Atualizar doacao](#Atualizar-doacao)
-- [Apagar doacao](#Apagar-doacao)
-- [Listar doacao]
+- [Cadastrar Doador](#cadastrar-doacao)
+- [Atualizar Doador](#Atualizar-doacao)
+- [Apagar Doador](#Apagar-doacao)
+- [Listar Doador]
 
-# Instituto/api/v1/SolicitarDoacao
-- [Cadastrar solicitarDoacao]
-- [Apagar solicitarDoacao]
-- [Atualizar solicitarDoacao]
-- [Listar solicitarDoacao]
+# AlimentoDoado/api/v1/AlimentoDoado
+- [Cadastrar AlimentoDoado]
+- [Apagar AlimentoDoado]
+- [Atualizar AlimentoDoado]
+- [Listar AlimentoDoado]
+
+# Instituto/api/v1/Instituto
+- [Cadastrar Instituto]
+- [Apagar Instituto]
+- [Atualizar Instituto]
+- [Listar Instituto]
+
+# SolicitacaoDoacao/api/v1/SolicitacaoDoacao
+- [Cadastrar SolicitacaoDoacao]
+- [Apagar SolicitacaoDoacao]
+- [Atualizar SolicitacaoDoacao]
+- [Listar SolicitacaoDoacao]
 
 <!-- Endereço do recurso -->
 
-`GET`/api/v1/doacao
+`GET`/api/v1/doador
 **Exemplo de Entrada** 
 ```js
     {
- 	"Id": '1',
- 	"Nome": 'Diana',
- 	"tipoAlimento": 'Arroz',
- 	"qtdAlimento": '1OKL',
+ 	"Id": '1L',
+ 	"NomeDoador": 'Marcos',
+	"endereco":'R.das neves',
+	"nomdeDocumento":'rg',
+	"nrDocumento":'4634837'
+	"alimentoDoado":{
+		"Id": '1L',
+		"nome": 'ONGAlimentoDoDia',
+		"nrRegistro":'182237',
+		"endereco":'R.das abelhas'
+	}
    }
 ```
 **Códigos da Resposta**
@@ -37,46 +56,63 @@ diminuir a falta de alimento
 
 --------------------
 
-`POST`/api/v1/refeicao
+`POST`/api/v1/doador
 
 **Campos da Requisição**
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-|Nome   |String|Sim          |O campo não pode estar vazio
-|tipoAlimento|String|Sim     |Descrever o tipo de alimento doado
-|qtdAlimento |String|Sim     |Texto com a quantidade de alimento a ser doado
+|NomeDoador|String|Sim       |O campo não pode estar vazio
+|endero|String|Sim     |Descrever o tipo de alimento doado
+|nomeDocumneto|String|Sim   |Texto com o nome do doador
+|nrDocumento|int|Sim|Numero do documento do doador
 ||||
 
 
 # Exemplo de corpo de requisição
 ```js
     {
- 	"Id": '1',
- 	"Nome": 'Diana',
- 	"tipoAlimento": 'Arroz',
- 	"qtdAlimento": '1OKL',
+ 	"Id": '1L',
+ 	"NomeDoador": 'Marcos',
+	"endereco":'R.das neves',
+	"nomdeDocumento":'rg',
+	"nrDocumento":'4634837'
+	"alimentoDoado":{
+		"Id": '1L',
+		"nome": 'ONGAlimentoDoDia',
+		"nrRegistro":'182237',
+		"endereco":'R.das abelhas'
+	}
    }
 ```
 -------------------------
 
-`PUT` /api/v1/ doacao/{id}
+`PUT` /api/v1/ doador/{id}
 
 **Campos da Requisição**
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-|Nome   |String|Sim          |O campo não pode estar vazio
-|tipoAlimento|String|Sim     |Descrever o tipo de alimento doado
-|qtdAlimento |String|Sim     |Texto com a quantidade de alimento a ser doado
+|NomeDoador|String|Sim       |O campo não pode estar vazio
+|endero|String|Sim     |Descrever o tipo de alimento doado
+|nomeDocumneto|String|Sim   |Texto com o nome do doador
+|nrDocumento|int|Sim|Numero do documento do doador
 ||||
+
 
 
 # Exemplo de corpo de requisição
 ```js
     {
- 	"Id": '1',
- 	"Nome": 'Diana',
- 	"tipoAlimento": 'Arroz',
- 	"qtdAlimento": '1OKL',
+ 	"Id": '1L',
+ 	"NomeDoador": 'Marcos',
+	"endereco":'R.das neves',
+	"nomdeDocumento":'rg',
+	"nrDocumento":'4634837'
+	"alimentoDoado":{
+		"Id": '1L',
+		"nome": 'ONGAlimentoDoDia',
+		"nrRegistro":'182237',
+		"endereco":'R.das abelhas'
+	}
    }
 ```
 
@@ -88,23 +124,32 @@ diminuir a falta de alimento
 
 --------------------------
 
-### Cadastrar doacao
-`POST` api/v1/ doacao
+### Cadastrar doador
+`POST` api/v1/ doador
 
 **Campos da Requisição**
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-|Nome   |String|Sim          |O campo não pode estar vazio
-|tipoAlimento|String|Sim     |Descrever o tipo de alimento doado
-|qtdAlimento |String|Sim     |Texto com a quantidade de alimento a ser doado
+|NomeDoador|String|Sim       |O campo não pode estar vazio
+|endero|String|Sim     |Descrever o tipo de alimento doado
+|nomeDocumneto|String|Sim   |Texto com o nome do doador
+|nrDocumento|int|Sim|Numero do documento do doador
 ||||
 
+
 ```js
-     {
- 	"Id": '1',
- 	"Nome": 'Diana',
- 	"tipoAlimento": 'Arroz',
- 	"qtdAlimento": '1OKL',
+    {
+ 	"Id": '1L',
+ 	"NomeDoador": 'Marcos',
+	"endereco":'R.das neves',
+	"nomdeDocumento":'rg',
+	"nrDocumento":'4634837'
+	"alimentoDoado":{
+		"Id": '1L',
+		"nome": 'ONGAlimentoDoDia',
+		"nrRegistro":'182237',
+		"endereco":'R.das abelhas'
+	}
    }
 ```
 
@@ -115,26 +160,35 @@ diminuir a falta de alimento
 
 -------------------------------------------
 
-### Atualizar doacao
-`PUT` api/v1/doacao/{id}
+### Atualizar doador
+`PUT` api/v1/doador/{id}
 
 **Campos da Requisição**
 | Campo | Tipo | Obrigatório | Descrição |
 |-------|------|:-----------:|-----------|
-|Nome   |String|Sim          |O campo não pode estar vazio
-|tipoAlimento|String|Sim     |Descrever o tipo de alimento doado
-|qtdAlimento |String|Sim     |Texto com a quantidade de alimento a ser doado
+|NomeDoador|String|Sim       |O campo não pode estar vazio
+|endero|String|Sim     |Descrever o tipo de alimento doado
+|nomeDocumneto|String|Sim   |Texto com o nome do doador
+|nrDocumento|int|Sim|Numero do documento do doador
 ||||
+
 
 # Exemplo de corpo de requisição
 # neste exemplo os sentimentos  seria o campo de preecncher a motivaçao que sentiu após a doacao
 
 ```js
-     {
- 	"Id": '1',
- 	"Nome": 'Diana',
- 	"tipoAlimento": 'Arroz',
- 	"qtdAlimento": '1OKL',
+    {
+ 	"Id": '1L',
+ 	"NomeDoador": 'Marcos',
+	"endereco":'R.das neves',
+	"nomdeDocumento":'rg',
+	"nrDocumento":'4634837'
+	"alimentoDoado":{
+		"Id": '1L',
+		"nome": 'ONGAlimentoDoDia',
+		"nrRegistro":'182237',
+		"endereco":'R.das abelhas'
+	}
    }
 ```
 |código|Descrição
@@ -145,8 +199,8 @@ diminuir a falta de alimento
 
 ----------------------------------
 
-### Apagar doacao
-`DELETE` /api/v1/ doacao/{id}
+### Apagar doador
+`DELETE` /api/v1/doador/{id}
 
 |código|Descrição
 |-|-

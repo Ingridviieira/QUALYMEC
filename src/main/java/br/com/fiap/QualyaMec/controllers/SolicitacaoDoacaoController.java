@@ -19,20 +19,15 @@ import br.com.fiap.QualyaMec.exceptions.RestNotFoundException;
 import br.com.fiap.QualyaMec.models.SolicitacaoDoacao;
 import br.com.fiap.QualyaMec.repository.SolicitacaoDoacaoRepository;
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
+
 
 
 @RestController
 @RequestMapping("/api/v1/SolicitacaoDoacao")
-@Slf4j
-
 public class SolicitacaoDoacaoController {
     
     @Autowired
     SolicitacaoDoacaoRepository repository;
-
-    @Autowired
-    SolicitacaoDoacao solicitacaoDoacao;
 
     @GetMapping
     public List<SolicitacaoDoacao> index(){
@@ -41,16 +36,14 @@ public class SolicitacaoDoacaoController {
 
     @PostMapping
     public ResponseEntity<SolicitacaoDoacao> create(
-            @RequestBody @Valid SolicitacaoDoacao solicitacaoDoacao,
-            BindingResult result
-        ){
+        @RequestBody @Valid SolicitacaoDoacao solicitacaoDoacao,
+        BindingResult result){
         repository.save(solicitacaoDoacao);
         return ResponseEntity.status(HttpStatus.CREATED).body(solicitacaoDoacao);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<SolicitacaoDoacao> show(@PathVariable Long id){
-        
         return ResponseEntity.ok(getSolicitacaoDoacao(id));
     }
 

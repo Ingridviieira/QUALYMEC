@@ -39,7 +39,7 @@ public class TokenService {
     public Usuario getUserByToken(String token) {
         Algorithm alg = Algorithm.HMAC256(secret);
         var email = JWT.require(alg)
-                    .withIssuer("Nubeck")
+                    .withIssuer("QualyMec")
                     .build()
                     .verify(token)
                     .getSubject();

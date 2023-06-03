@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 @Configuration
 public class SecurityConfig {
     
@@ -20,10 +21,10 @@ public class SecurityConfig {
     AuthorizationFilter authorizationFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http ) throws Exception{
         return http
-                .authorizeHttpRequests()
-                    .requestMatchers(HttpMethod.POST, "/api/registrar").permitAll()
+                .authorizeRequests()
+                .requestMatchers(HttpMethod.POST, "/api/registrar").permitAll()
                     .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                     .anyRequest().authenticated()
                 .and()
