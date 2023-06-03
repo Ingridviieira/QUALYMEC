@@ -5,10 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.fiap.QualyaMec.models.Doacao;
+import br.com.fiap.QualyaMec.models.Doador;
 
-public interface DoacaoRepository extends JpaRepository<Doacao, Long> {
-    Page<Doacao> findByNomeContaining(String busca, Pageable pageable);
+public interface DoadorRepository extends JpaRepository<Doador, Long> {
+    Page<Doador> findByNomeContaining(String busca, Pageable pageable);
 
     
 }

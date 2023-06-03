@@ -5,13 +5,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
-import br.com.fiap.QualyaMec.controllers.DoacaoController;
+import br.com.fiap.QualyaMec.controllers.DoadorController;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,39 +22,36 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Doacao {
+public class Doador {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "O campo nome não pode ser vazio")
-    private String nome;
+    private String nomeDoador; //Nome do doador
+
+    private String endereco;
+
+    private String nomeDocumento;
+    
+    private int nrDocumento;
 
     // @NotBlank @Size( max= 100, message = "o campo precisa estar com a descrição da doação e não pode estar vazio, e com no maximo 100 letras")
     // private String descricaoDoacao;
     
-    @NotBlank (message = "Descrever o tipo de alimento doado")
-    private String tipoAlimento;
-
-    private String qtdAlimento;
-
 
     @ManyToOne
-    private ReceberDoacao receberDoacao;
+    private AlimentoDoado alimentoDoado;
 
-    public EntityModel<Doacao> toEntityModel() {
+    public EntityModel<Doador> toEntityModel() {
         return EntityModel.of(
             this,
-            linkTo(methodOn(DoacaoController.class).show(id)).withSelfRel(),
-            linkTo(methodOn(DoacaoController.class).destroy(id)).withRel("delete"),
-            linkTo(methodOn(DoacaoController.class).index(null, Pageable.unpaged())).withRel("all"),
-            linkTo(methodOn(DoacaoController.class).show(this.getReceberDoacao().getId())).withRel("Receber doação")
+            linkTo(methodOn(DoadorController.class).show(id)).withSelfRel(),
+            linkTo(methodOn(DoadorController.class).destroy(id)).withRel("delete"),
+            linkTo(methodOn(DoadorController.class).index(null, Pageable.unpaged())).withRel("all"),
+            linkTo(methodOn(DoadorController.class).show(this.getAlimentoDoado().getId())).withRel("Alimento doado")
         );
-    }
-
-    public Doacao getReceberDoacao() {
-        return null;
     }
 
     

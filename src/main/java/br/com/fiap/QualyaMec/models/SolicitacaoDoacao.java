@@ -23,7 +23,7 @@ public class SolicitacaoDoacao {
     private String tipoDoacaoSoli;
 
     @NotBlank
-    private String solicitante;
+    private String qtdDoacao;
 
     
 }

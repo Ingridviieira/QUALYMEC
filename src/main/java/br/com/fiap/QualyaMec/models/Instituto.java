@@ -30,15 +30,12 @@ public class Instituto {
     private Long id;
 
     @NotEmpty(message = "O campo nome não pode ser vazio")
-    private String nome;
+    private String nomeInstituto;
 
-    // @NotBlank @Size( max= 100, message = "o campo precisa estar com a descrição da doação e não pode estar vazio, e com no maximo 100 letras")
-    // private String descricaoDoacao;
-    
-    @NotBlank (message = "Descrever o tipo de alimento doado")
-    private String tipoAlimento;
+    @NotBlank (message = "Descrever o numero de registro da empresa")
+    private int nrRegistro;
 
-    private String qtdAlimento;
+    private String endereco;
 
     @ManyToOne
     private SolicitacaoDoacao solicitacaoDoacao;

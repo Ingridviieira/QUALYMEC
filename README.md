@@ -11,11 +11,11 @@ diminuir a falta de alimento
 - [Apagar doacao](#Apagar-doacao)
 - [Listar doacao]
 
-# Instituto/api/v1/instituto
-- [Cadastrar instituto]
-- [Apagar instituto]
-- [Atualizar instituto]
-- [Listar instituto]
+# Instituto/api/v1/SolicitarDoacao
+- [Cadastrar solicitarDoacao]
+- [Apagar solicitarDoacao]
+- [Atualizar solicitarDoacao]
+- [Listar solicitarDoacao]
 
 <!-- Endereço do recurso -->
 

@@ -21,22 +21,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.QualyaMec.exceptions.RestNotFoundException;
-import br.com.fiap.QualyaMec.models.Doacao;
-import br.com.fiap.QualyaMec.repository.DoacaoRepository;
-import br.com.fiap.QualyaMec.repository.ReceberDoacaoRepository;
+import br.com.fiap.QualyaMec.models.Doador;
+import br.com.fiap.QualyaMec.repository.AlimentoDoadoRepository;
+import br.com.fiap.QualyaMec.repository.DoadorRepository;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/Doacao")
-public class DoacaoController {
+public class DoadorController {
 
-    Logger log = LoggerFactory.getLogger(DoacaoController.class);
-
-    @Autowired
-    DoacaoRepository doacaorepository;
+    Logger log = LoggerFactory.getLogger(DoadorController.class);
 
     @Autowired
-    ReceberDoacaoRepository receberDoacaoRepository;
+    DoadorRepository doacaorepository;
+
+    @Autowired
+    AlimentoDoadoRepository alimentoDoadoRepository;
     
     @Autowired
     PagedResourcesAssembler<Object> assembler;
@@ -47,24 +47,24 @@ public class DoacaoController {
         doacaorepository.findAll(pageable):
         doacaorepository.findByNomeContaining(busca, pageable);
 
-        return assembler.toModel(doacao.map(Doacao::toEntityModel));
+        return assembler.toModel(doacao.map(Doador::toEntityModel));
     }
 
     @PostMapping
-    public ResponseEntity<EntityModel<Doacao>> create(
-        @RequestBody @Valid Doacao doacao,
+    public ResponseEntity<EntityModel<Doador>> create(
+        @RequestBody @Valid Doador doacao,
         BindingResult result
         ){
         log.info("cadastrando as doacoes: " + doacao);
         doacaorepository.save(doacao);
-        doacao.setReceberDoacao(receberDoacaoRepository.findById(doacao.getReceberDoacao().getId()).get());
+        doacao.setAlimentoDoado(alimentoDoadoRepository.findById(doacao.getAlimentoDoado().getId()).get());
         return ResponseEntity
         .created(doacao.toEntityModel().getRequiredLink("self").toUri())
         .body(doacao.toEntityModel());
     }
 
     @GetMapping("{id}")
-    public EntityModel<Doacao> show(
+    public EntityModel<Doador> show(
         @PathVariable Long id
         ){
         log.info("Buscando Doacao: " + id);
@@ -72,7 +72,7 @@ public class DoacaoController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Doacao> destroy(
+    public ResponseEntity<Doador> destroy(
         @PathVariable Long id
         ){
         log.info("Apagando Doacao: " + id);
@@ -81,9 +81,9 @@ public class DoacaoController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Doacao> update(
+    public ResponseEntity<Doador> update(
         @PathVariable Long id,
-        @RequestBody @Valid Doacao doacao){
+        @RequestBody @Valid Doador doacao){
         log.info("Editando Doacao: " + id);
         getDoacao(id);
         doacao.setId(id);
@@ -91,7 +91,7 @@ public class DoacaoController {
         return ResponseEntity.ok(doacao);
         }
 
-        private Doacao getDoacao(Long id) {
+        private Doador getDoacao(Long id) {
             return doacaorepository.findById(id).orElseThrow(
                 () -> new RestNotFoundException("Doacao não encontrado"));
         }
