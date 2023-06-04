@@ -45,7 +45,7 @@ public class InstitutoController {
     public PagedModel<EntityModel<Object>> index(@RequestParam(required = false) String busca, @PageableDefault(size = 5) Pageable pageable) {
         var instituto = (busca == null) ?
         institutoRepository.findAll(pageable):
-        institutoRepository.findByNomeContaining(busca, pageable);
+        institutoRepository.findByNomeInstitutoContaining(busca, pageable);
 
         return assembler.toModel(instituto.map(Instituto::toEntityModel));
     }

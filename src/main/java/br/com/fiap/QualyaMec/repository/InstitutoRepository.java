@@ -8,6 +8,6 @@ import br.com.fiap.QualyaMec.models.Instituto;
 
 
 public interface InstitutoRepository extends JpaRepository<Instituto, Long>{
-    Page<Instituto> findByNomeContaining(String busca, Pageable pageable);
+    Page<Instituto> findByNomeInstitutoContaining(String busca, Pageable pageable);
 
 }

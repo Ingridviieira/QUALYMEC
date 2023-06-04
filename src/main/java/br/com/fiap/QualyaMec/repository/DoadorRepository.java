@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.fiap.QualyaMec.models.Doador;
 
 public interface DoadorRepository extends JpaRepository<Doador, Long> {
-    Page<Doador> findByNomeContaining(String busca, Pageable pageable);
+    Page<Doador> findByNomeDoadorContaining(String busca, Pageable pageable);
 
     
 }

@@ -45,7 +45,7 @@ public class DoadorController {
     public PagedModel<EntityModel<Object>> index(@RequestParam(required = false) String busca, @PageableDefault(size = 5) Pageable pageable) {
         var doacao = (busca == null) ?
         doacaorepository.findAll(pageable):
-        doacaorepository.findByNomeContaining(busca, pageable);
+        doacaorepository.findByNomeDoadorContaining(busca, pageable);
 
         return assembler.toModel(doacao.map(Doador::toEntityModel));
     }
