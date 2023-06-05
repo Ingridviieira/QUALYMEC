@@ -1,7 +1,5 @@
 package br.com.fiap.QualyaMec.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -24,13 +22,20 @@ import br.com.fiap.QualyaMec.exceptions.RestNotFoundException;
 import br.com.fiap.QualyaMec.models.Instituto;
 import br.com.fiap.QualyaMec.repository.InstitutoRepository;
 import br.com.fiap.QualyaMec.repository.SolicitacaoDoacaoRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/Instituto")
+@SecurityRequirement(name = "bearer-key")
+@Tag(name = "instituto")
 public class InstitutoController {
-
-    Logger log = LoggerFactory.getLogger(InstitutoController.class);
 
     @Autowired
     InstitutoRepository institutoRepository;
@@ -50,48 +55,49 @@ public class InstitutoController {
         return assembler.toModel(instituto.map(Instituto::toEntityModel));
     }
 
-
     @PostMapping
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "o instituto foi cadastrado com sucesso"),
+        @ApiResponse(responseCode = "400", description = "os dados enviados são inválidos")
+    })
     public ResponseEntity<EntityModel<Instituto>> create(
-        @RequestBody @Valid Instituto instituto,
-        BindingResult result
-        ){
-        log.info("cadastrando o instituto: " + instituto);
+            @RequestBody @Valid Instituto instituto,
+            BindingResult result) {
+        log.info("cadastrando instituto: " + instituto);
         institutoRepository.save(instituto);
         instituto.setSolicitacaoDoacao(solicitacaoDoacaoRepository.findById(instituto.getSolicitacaoDoacao().getId()).get());
         return ResponseEntity
-        .created(instituto.toEntityModel().getRequiredLink("self").toUri())
-        .body(instituto.toEntityModel());
+            .created(instituto.toEntityModel().getRequiredLink("self").toUri())
+            .body(instituto.toEntityModel());
     }
 
     @GetMapping("{id}")
-    public EntityModel<Instituto> show(
-        @PathVariable Long id
-        ){
-        log.info("Buscando Instituto: " + id);
+    @Operation(
+        summary = "Detalhes do Instituto",
+        description = "Retornar os dados da instituto de acordo com o id informado no path"
+    )
+    public EntityModel<Instituto> show(@PathVariable Long id) {
+        log.info("buscando instituto: " + id);
         return getInstituto(id).toEntityModel();
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Instituto> destroy(
-        @PathVariable Long id
-        ){
-        log.info("Apagando Ong: " + id);
+    public ResponseEntity<Instituto> destroy(@PathVariable Long id) {
+        log.info("apagando instituto: " + id);
         institutoRepository.delete(getInstituto(id));
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Instituto> update(
-        @PathVariable Long id,
-        @RequestBody @Valid Instituto instituto
-        ){
-        log.info("Editando Instituto: " + id);
+    public ResponseEntity<EntityModel<Instituto>> update(
+            @PathVariable Long id,
+            @RequestBody @Valid Instituto instituto) {
+        log.info("atualizando instituto: " + id);
         getInstituto(id);
         instituto.setId(id);
         institutoRepository.save(instituto);
-        return ResponseEntity.ok(instituto);
-        }
+        return ResponseEntity.ok(instituto.toEntityModel());
+    }
 
         private Instituto getInstituto(Long id) {
             return institutoRepository.findById(id).orElseThrow(
