@@ -34,7 +34,7 @@ public class Instituto {
 
     
     private int nrRegistro;
-    
+
     @NotBlank (message = "Descrever o numero de registro da empresa")
     private String endereco;
 
