@@ -29,7 +29,7 @@ public class TokenService {
         Algorithm alg = Algorithm.HMAC256(secret);
         var token = JWT.create()
                     .withSubject(credencial.email())
-                    .withIssuer("PetMania")
+                    .withIssuer("QUALYMEC")
                     .withExpiresAt(Instant.now().plus(20, ChronoUnit.MINUTES))
                     .sign(alg);
         
@@ -39,7 +39,7 @@ public class TokenService {
     public Usuario getUserByToken(String token) {
         Algorithm alg = Algorithm.HMAC256(secret);
         var email = JWT.require(alg)
-                    .withIssuer("QualyMec")
+                    .withIssuer("QUALYMEC")
                     .build()
                     .verify(token)
                     .getSubject();

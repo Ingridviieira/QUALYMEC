@@ -32,9 +32,10 @@ public class Instituto {
     @NotEmpty(message = "O campo nome não pode ser vazio")
     private String nomeInstituto;
 
-    @NotBlank (message = "Descrever o numero de registro da empresa")
+    
     private int nrRegistro;
-
+    
+    @NotBlank (message = "Descrever o numero de registro da empresa")
     private String endereco;
 
     @ManyToOne

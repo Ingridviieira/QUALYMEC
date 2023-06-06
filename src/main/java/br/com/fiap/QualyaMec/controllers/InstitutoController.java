@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/Instituto")
+@RequestMapping("/api/v1/instituto")
 @SecurityRequirement(name = "bearer-key")
 @Tag(name = "instituto")
 public class InstitutoController {

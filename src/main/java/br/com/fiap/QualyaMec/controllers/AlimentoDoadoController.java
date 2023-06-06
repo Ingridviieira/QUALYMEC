@@ -21,7 +21,7 @@ import br.com.fiap.QualyaMec.repository.AlimentoDoadoRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1/AlimentoDoado")
+@RequestMapping("api/v1/alimentoDoado")
 public class AlimentoDoadoController {
     
     @Autowired

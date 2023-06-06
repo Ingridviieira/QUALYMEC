@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/api/v1/SolicitacaoDoacao")
+@RequestMapping("/api/v1/solicitacaoDoacao")
 public class SolicitacaoDoacaoController {
     
     @Autowired
