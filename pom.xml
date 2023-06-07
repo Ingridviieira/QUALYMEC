@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.fiap</groupId>
-	<artifactId>QualyaMec</artifactId>
+	<artifactId>QualyMec</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>QualyaMec</name>
 	<description>Projeto combate a fome</description>
